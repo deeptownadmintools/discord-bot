@@ -69,6 +69,8 @@ async def guild(ctx, *args):
         if sortCol == 2:
             data.sort(key=lambda x: datetime.strptime(
                 x[sortCol], '%a, %d %b %Y %H:%M:%S %Z'), reverse=True)
+        elif sortCol == 1:
+            data.sort(key=lambda s: x[sortCol].lower)
         else:
             data.sort(key=lambda x: x[sortCol], reverse=True)
 

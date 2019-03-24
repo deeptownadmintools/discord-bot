@@ -9,22 +9,22 @@ async def choiceDialogue(ctx, data, format, batchSize, text, check,
     errEncountered = False
 
     while True:
-        if errEncountered:
-            msg = await ctx.bot.wait_for('message', check=check)
-            errEncountered = False
+        # if errEncountered:
+        #     msg = await ctx.bot.wait_for('message', check=check)
+        #     errEncountered = False
+        # else:
+        if index > max-batchSize:
+            msg = await sendNextBatch(ctx, text, LAST_ENDING, data,
+                                        index, max, batchSize, format,
+                                        check)
+        elif index == 0:
+            msg = await sendNextBatch(ctx, text, FIRST_ENDING, data,
+                                        index, max, batchSize, format,
+                                        check)
         else:
-            if index > max-batchSize:
-                msg = await sendNextBatch(ctx, text, LAST_ENDING, data,
-                                          index, max, batchSize, format,
-                                          check)
-            elif index == 0:
-                msg = await sendNextBatch(ctx, text, FIRST_ENDING, data,
-                                          index, max, batchSize, format,
-                                          check)
-            else:
-                msg = await sendNextBatch(ctx, text, DEFAULT_ENDING, data,
-                                          index, max, batchSize, format,
-                                          check)
+            msg = await sendNextBatch(ctx, text, DEFAULT_ENDING, data,
+                                        index, max, batchSize, format,
+                                        check)
 
         if msg.content == 'n':
             if index < max-batchSize:
@@ -38,11 +38,11 @@ async def choiceDialogue(ctx, data, format, batchSize, text, check,
             if raw:
                 return msg.content
             try:
-                id = int(msg.content)
-                break
+                return int(msg.content)
             except ValueError:
                 await ctx.send(monospaceWrap(ERROR),
                                delete_after=deleteErronAfter)
-                errEncountered = True
+                return
+                # errEncountered = True
 
-    return id
+    return -1
