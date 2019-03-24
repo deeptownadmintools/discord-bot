@@ -54,15 +54,15 @@ def guildTableFormatFluid(index='ID',
     if keys[9]:
         text += (' {:>' + str(5) + '}').format(data[9])
     if keys[10]:
-        text += (' {:>' + str(5) + '}').format(data[9])
+        text += (' {:>' + str(5) + '}').format(data[10])
     if keys[11]:
-        text += (' {:>' + str(6) + '}').format(data[9])
+        text += (' {:>' + str(6) + '}').format(data[11])
     if keys[12]:
-        text += (' {:>' + str(6) + '}').format(data[9])
-    if keys[10]:
-        if lengths[10] < 8:
-            lengths[10] = 8
-        text += (' {:>' + str(lengths[10]) + '}').format(data[10])
+        text += (' {:>' + str(6) + '}').format(data[12])
+    if keys[13]:
+        if lengths[13] < 8:
+            lengths[13] = 8
+        text += (' {:>' + str(lengths[13]) + '}').format(data[13])
     return text
 
 
