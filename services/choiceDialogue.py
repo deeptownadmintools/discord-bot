@@ -3,7 +3,7 @@ from services import sendNextBatch, monospaceWrap
 
 
 async def choiceDialogue(ctx, data, format, batchSize, text, check,
-                   deleteErronAfter=3, raw=False):
+                         deleteErronAfter=3, raw=False):
     max = len(data)
     index = 0
     errEncountered = False
@@ -41,7 +41,8 @@ async def choiceDialogue(ctx, data, format, batchSize, text, check,
                 id = int(msg.content)
                 break
             except ValueError:
-                await ctx.send(monospaceWrap(ERROR), delete_after=deleteErronAfter)
+                await ctx.send(monospaceWrap(ERROR),
+                               delete_after=deleteErronAfter)
                 errEncountered = True
 
     return id

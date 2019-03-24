@@ -12,7 +12,7 @@ def donationsFormat(index='ID', data=['NAME', 'DONATED', 'RECEIVED']):
 
 
 def donationsFormatFluid(index='ID', data=['NAME', 'DONATED', 'RECEIVED'],
-                         lengths=[32, 12, 12],keys=[]):
+                         lengths=[32, 12, 12], keys=[]):
     if lengths[1] < 7:
         lengths[1] = 7
     if lengths[2] < 8:
@@ -24,12 +24,14 @@ def donationsFormatFluid(index='ID', data=['NAME', 'DONATED', 'RECEIVED'],
 
 
 def guildTableFormatFluid(index='ID',
-                     data=['ID', 'Name', 'Last Online', 'LVL', 'DPTH',
-                           'Mine', 'ChMine', 'Oil', 'Craft', 'Smelt',
-                           'LstEvDon'],
-                     keys=[True, True, True, False, False, False, False,
-                           False, False, False, False],
-                     lengths=[3, 32, 29, 3, 4, 2, 2, 2, 2, 2, 12]):
+                          data=['ID', 'Name', 'Last Online', 'LVL', 'DPTH',
+                                'Mine', 'ChMine', 'Oil', 'Craft', 'Smelt',
+                                'Jewel', 'ChemSt', 'GreenH', 'LstEvDon'],
+                          keys=[True, True, True, False, False, False,
+                                False, False, False, False, False, False,
+                                False, False],
+                          lengths=[3, 32, 29, 3, 4, 2, 2, 2, 2, 2,
+                                   2, 2, 2, 12]):
     text = ''
     if keys[0]:
         text += '{:>3})'.format(index)
@@ -52,8 +54,14 @@ def guildTableFormatFluid(index='ID',
     if keys[9]:
         text += (' {:>' + str(5) + '}').format(data[9])
     if keys[10]:
-        if lengths[10]<8:
-            lengths[10]=8
+        text += (' {:>' + str(5) + '}').format(data[9])
+    if keys[11]:
+        text += (' {:>' + str(6) + '}').format(data[9])
+    if keys[12]:
+        text += (' {:>' + str(6) + '}').format(data[9])
+    if keys[10]:
+        if lengths[10] < 8:
+            lengths[10] = 8
         text += (' {:>' + str(lengths[10]) + '}').format(data[10])
     return text
 

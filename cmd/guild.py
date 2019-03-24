@@ -1,11 +1,28 @@
 from discord.ext import commands
-from services import guildFormat, createCheckAuthor, choiceDialogue, guildFormat, guildTableFormatFluid, guildTableChoiceFormat, sendAll
+from services import (guildFormat, createCheckAuthor, choiceDialogue,
+                      guildTableFormatFluid, guildTableChoiceFormat, sendAll)
 from conf import DTAT_HOST_URL
 from asyncio import TimeoutError
 from datetime import datetime
 import requests
 
-@commands.command(aliases=['gld'])
+
+help = "This command lists guild data for a guild of your choice. You can"\
+    " invoke it with either !gld or !guild followed by a guild name of your"\
+    " choice. You can also use the command without a guild name, in that"\
+    " case, it would list all the guilds in our database, but that might"\
+    " take a while, so it is advised not to do so.\n\nExample:\n"\
+    "!guild deep and dirty\nYou will get to choose a guild from a list.\n"\
+    "0\nUser chose a guild marked with 0.\n Server then prints a list of"\
+    " columns.\n2 0 1 2 13 5\nHere user chose to order the table by column"\
+    " number 2 and list columns 0, 2, 5 and 13."
+
+brief = "!guild [guild name]   lists guild data"
+
+usage = '[guild name]'
+
+
+@commands.command(aliases=['gld'], help=help, brief=brief, usage=usage)
 async def guild(ctx, *args):
     try:
         name = ' '.join(args)
@@ -21,7 +38,6 @@ async def guild(ctx, *args):
         if id == -1:
             return
         guild_id = data[id][0]
-        guildName = data[id][1]
         result = requests.get(DTAT_HOST_URL + '/guild/id/' +
                               str(guild_id) + '/data')
         json = result.json()
@@ -33,9 +49,10 @@ async def guild(ctx, *args):
             'by row 2.'
         text += '\n' + guildTableChoiceFormat()
 
-        msg = await choiceDialogue(ctx, json['players']['keys'], guildTableChoiceFormat, 20, text,
+        msg = await choiceDialogue(ctx, json['players']['keys'],
+                                   guildTableChoiceFormat, 20, text,
                                    createCheckAuthor(ctx), raw=True)
-        print(msg)
+        # print(msg)
         msgParsed = msg.split(' ')
         sortCol = int(msgParsed[0])
         cols = []
@@ -44,13 +61,14 @@ async def guild(ctx, *args):
         for i in range(1, len(msgParsed)):
             try:
                 c = int(msgParsed[i])
-                if c>=0 and c< len(json['players']['keys']):
+                if c >= 0 and c < len(json['players']['keys']):
                     cols.append(c)
             except ValueError:
                 pass
 
         if sortCol == 2:
-            data.sort(key=lambda x: datetime.strptime(x[sortCol], '%a, %d %b %Y %H:%M:%S %Z'), reverse=True)
+            data.sort(key=lambda x: datetime.strptime(
+                x[sortCol], '%a, %d %b %Y %H:%M:%S %Z'), reverse=True)
         else:
             data.sort(key=lambda x: x[sortCol], reverse=True)
 
@@ -62,7 +80,10 @@ async def guild(ctx, *args):
 
         text = json['name']
 
-        await sendAll(ctx, text, data, guildTableFormatFluid, show, fixed = [True, False, False, False, True, True, True, True, True, True, True, False])
+        await sendAll(ctx, text, data, guildTableFormatFluid, show,
+                      fixed=[True, False, False, False, True, True,
+                             True, True, True, True, True, True,
+                             True, True, False])
 
     except TimeoutError:
         return
