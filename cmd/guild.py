@@ -46,7 +46,8 @@ async def guild(ctx, *args):
         text = 'Choose one ID according to which you want the table to be '\
             'sorted, then choose multiple IDs to be shown as rows in your '\
             'table.\nExample: 2 2 1 5\nThis will show rows 1, 2 and 5 sorted '\
-            'by row 2.'
+            'by row 2. You can also use -2 2 1 5, which would in turn sort '\
+            'the table in descending order.'
         text += '\n' + guildTableChoiceFormat()
 
         msg = await choiceDialogue(ctx, json['players']['keys'],
@@ -66,13 +67,18 @@ async def guild(ctx, *args):
             except ValueError:
                 pass
 
+        reverseSort=False
+        if sortCol <0:
+           reverseSort = True
+           sortCol=sortCol*(-1)
+
         if sortCol == 2:
             data.sort(key=lambda x: datetime.strptime(
-                x[sortCol], '%a, %d %b %Y %H:%M:%S %Z'), reverse=True)
+                x[sortCol], '%a, %d %b %Y %H:%M:%S %Z'), reverse=reverseSort)
         elif sortCol == 1:
-            data.sort(key=lambda x: x[sortCol].lower())
+            data.sort(key=lambda x: x[sortCol].lower(), reverse=reverseSort)
         else:
-            data.sort(key=lambda x: x[sortCol], reverse=True)
+            data.sort(key=lambda x: x[sortCol], reverse=reverseSort)
 
         for i in range(len(json['players']['keys'])):
             if i in cols:
