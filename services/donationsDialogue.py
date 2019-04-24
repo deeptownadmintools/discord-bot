@@ -6,7 +6,7 @@ import requests
 
 async def donationsDialogue(ctx, *args, sortReceived=False):
     name = ' '.join(args)
-    result = requests.get(DTAT_HOST_URL + '/guild/name/' + name)
+    result = requests.get(DTAT_HOST_URL + '/data/guild/name/' + name)
     json = result.json()
     data = json['data']
     text = 'Choose a guild:\n' + guildFormat()
@@ -19,7 +19,7 @@ async def donationsDialogue(ctx, *args, sortReceived=False):
         return
     guild_id = data[id][0]
     guildName = data[id][1]
-    result = requests.get(DTAT_HOST_URL + '/guild/id/' +
+    result = requests.get(DTAT_HOST_URL + '/data/guild/id/' +
                           str(guild_id) + '/times')
     json = result.json()
     data = json['times']['data']
@@ -47,22 +47,22 @@ async def donationsDialogue(ctx, *args, sortReceived=False):
     if id1 == 0:
         if id2 == 0:
             result = requests.get(DTAT_HOST_URL +
-                                  '/donations/current/guild/id/' +
+                                  '/data/donations/current/guild/id/' +
                                   str(guild_id))
         else:
             result = requests.get(DTAT_HOST_URL +
-                                  '/donations/specified/time/id/' +
+                                  '/data/donations/specified/time/id/' +
                                   str(data[id2][0]))
     else:
         if id2 == 0:
             result = requests.get(DTAT_HOST_URL +
-                                  '/donations/difference/guild/id/' +
+                                  '/data/donations/difference/guild/id/' +
                                   str(guild_id) +
                                   '/time/id/' +
                                   str(data[id1][0]))
         else:
             result = requests.get(DTAT_HOST_URL +
-                                  '/donations/difference/time/id/' +
+                                  '/data/donations/difference/time/id/' +
                                   str(data[id1][0]) +
                                   '/time/id/' +
                                   str(data[id2][0]))

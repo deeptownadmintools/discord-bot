@@ -26,7 +26,7 @@ usage = '[guild name]'
 async def guild(ctx, *args):
     try:
         name = ' '.join(args)
-        result = requests.get(DTAT_HOST_URL + '/guild/name/' + name)
+        result = requests.get(DTAT_HOST_URL + '/data/guild/name/' + name)
         json = result.json()
         data = json['data']
         text = 'Choose a guild:\n' + guildFormat()
@@ -38,7 +38,7 @@ async def guild(ctx, *args):
         if id == -1:
             return
         guild_id = data[id][0]
-        result = requests.get(DTAT_HOST_URL + '/guild/id/' +
+        result = requests.get(DTAT_HOST_URL + '/data/guild/id/' +
                               str(guild_id) + '/data')
         json = result.json()
         data = json['players']['data']
