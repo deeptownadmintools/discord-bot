@@ -74,8 +74,8 @@ async def donationsDialogue(ctx, *args, sortReceived=False):
         str(json['to'])
 
     if sortReceived:
-        data.sort(key=lambda x: 2147483647 if x[2] == '/' else x[2], reverse=True)
+        data.sort(key=lambda x: -1 if x[2] == '/' else x[2], reverse=True)
     else:
-        data.sort(key=lambda x: 2147483647 if x[1] == '/' else x[1], reverse=True)
+        data.sort(key=lambda x: -1 if x[1] == '/' else x[1], reverse=True)
 
     await sendAll(ctx, text, data, donationsFormatFluid)
