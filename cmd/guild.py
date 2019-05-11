@@ -67,10 +67,10 @@ async def guild(ctx, *args):
             except ValueError:
                 pass
 
-        reverseSort=False
-        if sortCol <0:
-           reverseSort = True
-           sortCol=sortCol*(-1)
+        reverseSort = False
+        if sortCol < 0:
+            reverseSort = True
+            sortCol = sortCol*(-1)
 
         if sortCol == 2:
             data.sort(key=lambda x: datetime.strptime(

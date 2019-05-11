@@ -70,7 +70,7 @@ async def donationsDialogue(ctx, *args, sortReceived=False):
     json = result.json()
     data = json['data']
     text = guildName + '\nFrom: ' + \
-        str(json['from']) + '\nTo:  ' + \
+        str(json['from']) + '\nTo:   ' + \
         str(json['to'])
 
     if sortReceived:

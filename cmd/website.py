@@ -1,5 +1,4 @@
 from discord.ext import commands
-from services import monospaceWrap
 
 
 @commands.command(aliases=['web'])
