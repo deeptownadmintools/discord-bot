@@ -5,6 +5,15 @@ import requests
 
 
 async def donationsDialogue(ctx, *args, sortReceived=False):
+    """
+    Dialogue, which allows user to select guild, and two dates. Afterwards
+    the bot will return a table with donations over selected period of time.
+        :param ctx: Message context
+        :param args: Arguments of the main command
+        :param sortReceived: If True, the final table will be sorted according
+            to donations received. Otherwise the table will be sorted
+            according to donations given.
+    """
     name = ' '.join(args)
     result = requests.get(DTAT_HOST_URL + '/data/guild/name/' + name)
     json = result.json()

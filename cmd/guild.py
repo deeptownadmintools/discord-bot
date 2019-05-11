@@ -24,6 +24,11 @@ usage = '[guild name]'
 
 @commands.command(aliases=['gld'], help=help, brief=brief, usage=usage)
 async def guild(ctx, *args):
+    """
+    Bot command, which lists information about players within selected guild.
+        :param ctx: message context created by commands extension
+        :param args: arguments passed after the main command
+    """
     try:
         name = ' '.join(args)
         result = requests.get(DTAT_HOST_URL + '/data/guild/name/' + name)
@@ -53,7 +58,6 @@ async def guild(ctx, *args):
         msg = await choiceDialogue(ctx, json['players']['keys'],
                                    guildTableChoiceFormat, 20, text,
                                    createCheckAuthor(ctx), raw=True)
-        # print(msg)
         msgParsed = msg.split(' ')
         sortCol = int(msgParsed[0])
         cols = []

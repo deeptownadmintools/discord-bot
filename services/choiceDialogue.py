@@ -3,7 +3,30 @@ from services import sendNextBatch, monospaceWrap
 
 
 async def choiceDialogue(ctx, data, format, batchSize, text, check,
-                         deleteErronAfter=3, raw=False):
+                         deleteErrorAfter=3, raw=False):
+    """
+    Dialogue, which allows user to list through pages of a given table, and
+    to select one of its rows.
+        :param ctx: Message context created by commands extension
+        :param data: Array of arrays containing data you want to print
+        :param format: Formating function, which returns string formated
+            line of desired table from provided data. If no parameters are
+            provided the formating function will return tables header.
+        :param batchSize: Number of lines you want to print at once
+        :param text: Introductory string, which will be printed before the
+            table
+        :param check: Function returning True if conditions for response are
+            satisfied otherwise False. These conditions can be for example
+            message provided from ctx and newly received response being sent
+            by the same user.
+        :param deleteErrorAfter: If zero error messages will not be deleted,
+            otherwise error messages will be deleted after set amount of
+            seconds.
+        :param raw: If True, response will be directly returned without any
+            changes to it.
+        :returns: Returns -1 if user decided to abort selection. Othervise
+            returns users selection.
+    """
     max = len(data)
     index = 0
 
@@ -36,7 +59,7 @@ async def choiceDialogue(ctx, data, format, batchSize, text, check,
                 return int(msg.content)
             except ValueError:
                 await ctx.send(monospaceWrap(ERROR),
-                               delete_after=deleteErronAfter)
+                               delete_after=deleteErrorAfter)
                 return
 
     return -1

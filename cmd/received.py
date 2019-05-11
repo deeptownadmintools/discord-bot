@@ -14,6 +14,12 @@ usage = '[guild name]'
 
 @commands.command(aliases=['rec'], help=help, brief=brief, usage=usage)
 async def received(ctx, *args):
+    """
+    Bot command, which returns donations over given time sorted by received
+    donations.
+        :param ctx: message context created by commands extension
+        :param args: arguments passed after the main command
+    """
     try:
         await donationsDialogue(ctx, *args, sortReceived=True)
     except TimeoutError:
