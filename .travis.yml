@@ -1,0 +1,8 @@
+language: python
+python:
+  - "3.6"
+install:
+  - pip install flake8
+script:  
+  - flake8 dtat_discord.py cmd/ services/ tests/ --count
+  # - python setup.py pytest

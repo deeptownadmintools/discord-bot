@@ -68,7 +68,7 @@ def guildTableFormatFluid(index='ID',
         :param index: Table row index
         :param data: Data you want to print
         :param keys: Array, each value signifies, if associated column
-            should be displayed. 
+            should be displayed.
         :param lengths: Array of lengths for each column
         :returns: Table row (String)
     """
