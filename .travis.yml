@@ -5,5 +5,5 @@ install:
   - pip install flake8
 script:  
   - flake8 dtat_discord.py cmd/ services/ tests/ --count
-  - echo "DTAT_HOST_URL = ''\nFIRST_ENDING = ''\nDEFAULT_ENDING = ''\nLAST_ENDING = ''\nERROR = ''" > conf.py
+  - echo "PREFIX = '!'\nDTAT_HOST_URL = ''\nFIRST_ENDING = ''\nDEFAULT_ENDING = ''\nLAST_ENDING = ''\nERROR = ''\n" > conf.py
   - python setup.py pytest
