@@ -60,6 +60,6 @@ async def choiceDialogue(ctx, data, format, batchSize, text, check,
             except ValueError:
                 await ctx.send(monospaceWrap(ERROR),
                                delete_after=deleteErrorAfter)
-                return
+                return -1
 
     return -1
