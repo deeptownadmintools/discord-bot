@@ -4,9 +4,9 @@ from services.format import (guildFormat, timeStampFormat, donationsFormat,
                              guildTableChoiceFormat)
 from services.sendNextBatch import sendNextBatch
 from services.createCheck import createCheckAuthor
-from services.choiceDialogue import choiceDialogue
+from services.choice_dialogue import choiceDialogue
 from services.sendAll import sendAll
-from services.donationsDialogue import donationsDialogue
+from services.donations_dialogue import donationsDialogue
 
 
 __all__ = [
