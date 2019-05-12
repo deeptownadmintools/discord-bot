@@ -1,4 +1,4 @@
-from conf import FIRST_ENDING, DEFAULT_ENDING, LAST_ENDING, ERROR
+from confMsg import FIRST_ENDING, DEFAULT_ENDING, LAST_ENDING, ERROR
 from services import sendNextBatch, monospaceWrap
 
 
