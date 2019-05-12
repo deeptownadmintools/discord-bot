@@ -1,5 +1,5 @@
 from conf import TOKEN, PREFIX
-from cmd import donations, received, guild, website
+from commands import donations, received, guild, website
 from discord.ext.commands import Bot
 
 
