@@ -4,7 +4,6 @@
 #### Website: [dtat.hampl.space](http://dtat.hampl.space)
 #### Bot: [invite](https://discordapp.com/oauth2/authorize?client_id=557340294971129856&permissions=2048&scope=bot)
 #### API: [Postman](https://documenter.getpostman.com/view/5414817/S1LsXq6g)
-#### Suport: [paypal.me](https://www.paypal.me/dtatdonate)
 
 ## Running the bot
 1) To run the server, you will need url to a running [main server](https://github.com/deeptownadmintools/main-server). You can either host it yourself, or connect to the one hosted at [dtat.hampl.space](http://dtat.hampl.space/).
