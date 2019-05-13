@@ -11,8 +11,8 @@
 1) Enter into virtual environment
 1) Install requirements `pip install -e .`
 1) Set up a `conf.py` file by copying the `conf_example.py` file and insert your bot token. You can get your token by creating a [discord app](https://discordapp.com/developers/applications/), and making it into a bot user.
-1) Within the `conf.py` file set propper url to access the main server or its proxy.
-1) You are now all set and you cna start the bot with `python dtat_discord.py`
+1) Within the `conf.py` file set proper url to access the main server or its proxy.
+1) You are now all set and you can start the bot with `python dtat_discord.py`
 
 ## Contributing
 1) If you want to contribute to the main repository please ensure, that your code is following the PEP8 convention. You can do that with the use of flake8 and autopep8, which you can install using `pip install -r dev-requirements.txt`, after activating your virtual environment.
