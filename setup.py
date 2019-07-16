@@ -7,7 +7,8 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'discord.py-rw',
+        # 'discord.py-rw',
+        'discord.py',
         'requests',
     ],
     setup_requires=[
