@@ -12,7 +12,7 @@ def pack():
     filename = '%s.tar.gz' % dist
 
     # pack all files
-    local('tar --exclude="__pycache__" --exclude="*.pyc" -czvf dist/%s ./cmd ./services ./conf.py ./conf_exmple.py  ./dtat_discord.py  ./README.md ./setup.py' % filename)
+    local('tar --exclude="__pycache__" --exclude="*.pyc" -czvf dist/%s ./commands ./services ./conf.py ./conf_example.py  ./dtat_discord.py  ./README.md ./setup.py' % filename)
 
 def deploy():
     # figure out the package name and version

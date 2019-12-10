@@ -4,6 +4,6 @@ python:
 install:
   - pip install flake8
 script:  
-  - flake8 dtat_discord.py cmd/ services/ tests/ --count
+  - flake8 dtat_discord.py commands/ services/ tests/ --count
   - mv conf_example.py conf.py
   - python setup.py pytest
